@@ -2,7 +2,7 @@ FROM debian:7
 
 RUN apt-get update -y
 RUN apt-get install -y \
-  git-core build-essential libssl-dev libncurses5-dev unzip subversion mercurial
+  git-core build-essential libssl-dev libncurses5-dev unzip subversion mercurial \
   asciidoc bash bc binutils bzip2 fastjar flex git-core g++ gcc util-linux \
   gawk libgtk2.0-dev intltool jikespg zlib1g-dev make genisoimage libncurses5-dev \
   libssl-dev patch perl-modules python2.6-dev rsync ruby sdcc unzip wget \
