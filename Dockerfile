@@ -14,7 +14,8 @@ RUN cd /compile/openwrt-1209 && su compile -c "./scripts/feeds update -a"
 RUN cd /compile/openwrt-1209 && su compile -c "./scripts/feeds install -a"
 RUN cd /compile/openwrt-1209 && su compile -c "make defconfig"
 RUN cd /compile/openwrt-1209 && su compile -c "make prereq"
-#ADD etc/aerospike/aerospike.conf.template /etc/aerospike/aerospike.conf.template
+
+ADD compile/openwrt-1209/feeds.conf.default /compile/openwrt-1209/feeds.conf.default
 
 # Mount the Aerospike data directory
 #VOLUME ["/storage/data"]
