@@ -8,11 +8,12 @@ RUN apt-get install -y \
   libssl-dev patch perl-modules python2.6-dev rsync ruby sdcc unzip wget \
   gettext xsltproc zlib1g-dev 
 RUN rm -rvf /var/lib/apt/lists/*
-RUN git clone git://git.openwrt.org/12.09/openwrt.git /openwrt-1209
-RUN cd /openwrt-1209 && ./scripts/feeds update -a
-RUN cd /openwrt-1209 && ./scripts/feeds install -a
-RUN cd /openwrt-1209 && make defconfig
-RUN cd /openwrt-1209 && make prereq
+RUN useradd -m -d /compile -s /bin/bash -c 'To run compiler' compile
+RUN su compile -c git clone git://git.openwrt.org/12.09/openwrt.git /compile/openwrt-1209
+RUN cd /compile/openwrt-1209 && su compile -c ./scripts/feeds update -a
+RUN cd /compile/openwrt-1209 && su compile -c ./scripts/feeds install -a
+RUN cd /compile/openwrt-1209 && su compile -c make defconfig
+RUN cd /compile/openwrt-1209 && su compile -c make prereq
 #ADD etc/aerospike/aerospike.conf.template /etc/aerospike/aerospike.conf.template
 
 # Mount the Aerospike data directory
