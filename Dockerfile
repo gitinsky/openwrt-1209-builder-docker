@@ -7,7 +7,7 @@ RUN apt-get install -y \
   gawk libgtk2.0-dev intltool zlib1g-dev make genisoimage libncurses5-dev \
   libssl-dev patch perl-modules python2.6-dev rsync ruby sdcc unzip wget \
   gettext xsltproc zlib1g-dev 
-RUN /var/lib/apt/lists/*
+RUN rm -rvf /var/lib/apt/lists/*
 RUN git clone git://git.openwrt.org/12.09/openwrt.git /openwrt-1209
 RUN cd /openwrt-1209 && ./scripts/feeds update -a
 RUN cd /openwrt-1209 && ./scripts/feeds install -a
