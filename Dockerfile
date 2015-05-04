@@ -10,12 +10,14 @@ RUN apt-get install -y \
 RUN rm -rvf /var/lib/apt/lists/*
 RUN useradd -m -d /compile -s /bin/bash -c 'To run compiler' compile
 RUN su compile -c "git clone git://git.openwrt.org/12.09/openwrt.git /compile/openwrt-1209"
+
+RUN wget -O /compile/openwrt-1209/feeds.conf.default \
+  https://raw.githubusercontent.com/gitinsky/openwrt-1209-builder-docker/master/compile/openwrt-1209/feeds.conf.default
+
 RUN cd /compile/openwrt-1209 && su compile -c "./scripts/feeds update -a"
 RUN cd /compile/openwrt-1209 && su compile -c "./scripts/feeds install -a"
 RUN cd /compile/openwrt-1209 && su compile -c "make defconfig"
 RUN cd /compile/openwrt-1209 && su compile -c "make prereq"
-
-ADD compile/openwrt-1209/feeds.conf.default /compile/openwrt-1209/feeds.conf.default
 
 # Mount the Aerospike data directory
 #VOLUME ["/storage/data"]
