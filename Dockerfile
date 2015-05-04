@@ -10,10 +10,10 @@ RUN apt-get install -y \
 RUN rm -rvf /var/lib/apt/lists/*
 RUN useradd -m -d /compile -s /bin/bash -c 'To run compiler' compile
 RUN su compile -c "git clone git://git.openwrt.org/12.09/openwrt.git /compile/openwrt-1209"
-RUN cd /compile/openwrt-1209 && su compile -c ./scripts/feeds update -a
-RUN cd /compile/openwrt-1209 && su compile -c ./scripts/feeds install -a
-RUN cd /compile/openwrt-1209 && su compile -c make defconfig
-RUN cd /compile/openwrt-1209 && su compile -c make prereq
+RUN cd /compile/openwrt-1209 && su compile -c "./scripts/feeds update -a"
+RUN cd /compile/openwrt-1209 && su compile -c "./scripts/feeds install -a"
+RUN cd /compile/openwrt-1209 && su compile -c "make defconfig"
+RUN cd /compile/openwrt-1209 && su compile -c "make prereq"
 #ADD etc/aerospike/aerospike.conf.template /etc/aerospike/aerospike.conf.template
 
 # Mount the Aerospike data directory
