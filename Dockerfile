@@ -18,7 +18,7 @@ RUN cd /compile/openwrt-1209 && su compile -c "./scripts/feeds update -a"
 RUN cd /compile/openwrt-1209 && su compile -c "./scripts/feeds install -a"
 RUN cd /compile/openwrt-1209 && su compile -c "make defconfig"
 RUN cd /compile/openwrt-1209 && su compile -c "make prereq"
-RUN cd /compile/openwrt-1209 && su compile -c "make prepare"
+RUN cd /compile/openwrt-1209 && su compile -c "make v=99 prepare"
 
 # Mount the Aerospike data directory
 #VOLUME ["/storage/data"]
